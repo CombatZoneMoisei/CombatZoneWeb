@@ -256,20 +256,25 @@ const Reservations = () => {
 
                   <div className="form-row">
                     <div className="form-group">
-  <label htmlFor="date" className="form-label">Data dorită * (dd/mm/yyyy)</label>
-  <Input
-    id="date"
-    name="date"
-    type="date"
-    value={formData.date}
-    onChange={handleChange}
-    // Această linie blochează tastatura, forțând click-ul pe calendar
-    onKeyDown={(e) => e.preventDefault()} 
-    required
-    className="form-input"
-    // Setăm data minimă pe 16 Martie 2026, deoarece tot ce e înainte e blocat
-    min="2026-03-16" 
-  />
+  <label htmlFor="date" className="form-label">Data dorită *</label>
+  <div 
+    className="date-input-wrapper"
+    onClick={() => document.getElementById('date')?.showPicker?.()}
+    style={{ position: 'relative', cursor: 'pointer' }}
+  >
+    <Input
+      id="date"
+      name="date"
+      type="date"
+      value={formData.date}
+      onChange={handleChange}
+      onKeyDown={(e) => e.preventDefault()}
+      required
+      className="form-input date-clickable"
+      min="2026-03-16"
+      style={{ cursor: 'pointer' }}
+    />
+  </div>
   {formData.date && (
     <small style={{ color: 'var(--text-secondary)', fontSize: '0.875rem', marginTop: '4px', display: 'block' }}>
       Data selectată: {formatDateForDisplay(formData.date)}

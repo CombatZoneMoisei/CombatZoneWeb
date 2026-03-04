@@ -7,7 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../co
 
 const Pricing = () => {
   const [gameType, setGameType] = useState('lasertag');
-  
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -21,10 +21,10 @@ const Pricing = () => {
         <div className="container">
           <h1 className="page-title">TARIFE</h1>
             <p className="page-subtitle">Pachete flexibile pentru fiecare tip de jucător</p>
-            
+
             {/* Game Type Toggle */}
             <div className="game-type-toggle" data-testid="pricing-game-toggle">
-              <button 
+              <button
                 className={`toggle-btn ${gameType === 'lasertag' ? 'active' : ''}`}
                 onClick={() => setGameType('lasertag')}
                 data-testid="pricing-lasertag-btn"
@@ -32,7 +32,7 @@ const Pricing = () => {
                 <Crosshair className="toggle-icon" />
                 Lasertag
               </button>
-              <button 
+              <button
                 className={`toggle-btn ${gameType === 'paintball' ? 'active' : ''}`}
                 onClick={() => setGameType('paintball')}
                 data-testid="pricing-paintball-btn"
@@ -41,7 +41,7 @@ const Pricing = () => {
                 Paintball
               </button>
             </div>
-            
+
             <p className="payment-warning">
               ⚠️ Rezervările se vor confirma doar după achitarea avansului de 50% din totalul rezervării</p>
         </div>
@@ -52,7 +52,7 @@ const Pricing = () => {
         <div className="container">
           <div className="pricing-grid-full">
             {currentPricing.map((pkg) => (
-              <Card key={pkg.id} className={`pricing-card-full ${pkg.popular ? 'popular-full' : ''}`} style={{ minHeight: '600px', display: 'flex', flexDirection: 'column' }}>
+              <Card key={pkg.id} className={`pricing-card-full ${pkg.popular ? 'popular-full' : ''}`}>
                 {pkg.popular && (
                   <div className="popular-ribbon">
                     <Star className="ribbon-icon" />
@@ -62,14 +62,14 @@ const Pricing = () => {
                 <CardHeader className="pricing-header">
                   <CardTitle className="pricing-title-full">{pkg.name}</CardTitle>
                   <div className="pricing-price-wrapper" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-                    <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'center', gap: '0' }}>
+                    <div className="pricing-price-row">
                       {pkg.price.includes('RON') ? (
                         <>
-                          <span className="pricing-price-full" style={{ fontSize: '3.5rem' }}>{pkg.price.split('RON')[0]}RON</span>
-                          {pkg.price.includes('/') && <span style={{ fontSize: '1.25rem', fontWeight: '500', marginLeft: '0', color: '#FFFFFF' }}>{pkg.price.split('RON')[1]}</span>}
+                          <span className="pricing-price-full">{pkg.price.split('RON')[0]}RON</span>
+                          {pkg.price.includes('/') && <span className="pricing-price-suffix">{pkg.price.split('RON')[1]}</span>}
                         </>
                       ) : (
-                        <span className="pricing-price-full" style={{ fontSize: '2rem' }}>{pkg.price}</span>
+                        <span className="pricing-price-full pricing-price-special">{pkg.price}</span>
                       )}
                     </div>
                     <CardDescription className="pricing-desc">
@@ -77,7 +77,7 @@ const Pricing = () => {
                     </CardDescription>
                   </div>
                 </CardHeader>
-                <CardContent className="pricing-content" style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                <CardContent className="pricing-content pricing-content-flex">
                   <ul className="pricing-features-full">
                     {pkg.features.map((feature, idx) => (
                       <li key={idx} className="pricing-feature-full">
@@ -106,7 +106,7 @@ const Pricing = () => {
               <CardContent className="info-content">
                 <h3 className="info-title">Reduceri Speciale</h3>
                 <p className="info-text">
-                  Pentru evenimente private oferim reduceri. 
+                  Pentru evenimente private oferim reduceri.
                   Contactează-ne pentru oferte personalizate!
                 </p>
               </CardContent>
@@ -115,7 +115,7 @@ const Pricing = () => {
               <CardContent className="info-content">
                 <h3 className="info-title">Ce este inclus</h3>
                 <p className="info-text">
-                  Toate rezervările includ echipament complet, instructaj de siguranță, 
+                  Toate rezervările includ echipament complet, instructaj de siguranță,
                   și acces la facilitățile noastre moderne.
                 </p>
               </CardContent>
@@ -124,7 +124,7 @@ const Pricing = () => {
               <CardContent className="info-content">
                 <h3 className="info-title">Metode de plată</h3>
                 <p className="info-text">
-                  Acceptăm plata cu numerar și card bancar la locație. 
+                  Acceptăm plata cu numerar și card bancar la locație.
                   Rezervarea se poate face online sau telefonic.
                   Avans perceput pentru fiecare rezervare - minim 50%.
                 </p>
