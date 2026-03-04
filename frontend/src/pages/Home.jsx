@@ -1,14 +1,18 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Star, Users, Clock, Shield } from 'lucide-react';
+import { Star, Users, Clock, Shield, Crosshair, Target } from 'lucide-react';
 import { mockData } from '../mock';
 import { Button } from '../components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
 
 const Home = () => {
+  const [gameType, setGameType] = useState('lasertag');
+  
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const currentPricing = gameType === 'lasertag' ? mockData.pricingLasertag : mockData.pricingPaintball;
 
   return (
     <div className="home-page">
@@ -70,10 +74,31 @@ const Home = () => {
         <div className="container">
           <h2 className="section-title">TARIFELE NOASTRE</h2>
             <p className="section-subtitle">Alege pachetul potrivit pentru tine</p>
+            
+            {/* Game Type Toggle */}
+            <div className="game-type-toggle" data-testid="home-game-toggle">
+              <button 
+                className={`toggle-btn ${gameType === 'lasertag' ? 'active' : ''}`}
+                onClick={() => setGameType('lasertag')}
+                data-testid="home-lasertag-btn"
+              >
+                <Crosshair className="toggle-icon" />
+                Lasertag
+              </button>
+              <button 
+                className={`toggle-btn ${gameType === 'paintball' ? 'active' : ''}`}
+                onClick={() => setGameType('paintball')}
+                data-testid="home-paintball-btn"
+              >
+                <Target className="toggle-icon" />
+                Paintball
+              </button>
+            </div>
+            
             <p className="payment-warning">
              ⚠️ Rezervările se vor confirma doar după achitarea avansului de 50% din totalul rezervării</p>
         <div className="pricing-grid">
-            {mockData.pricing.map((pkg) =>
+            {currentPricing.map((pkg) =>
             <Card key={pkg.id} className={`pricing-card ${pkg.popular ? 'popular' : ''}`} style={{ minHeight: '600px', display: 'flex', flexDirection: 'column' }}>
                 {pkg.popular && <div className="popular-badge">CEL MAI POPULAR</div>}
                 <CardHeader>
@@ -96,7 +121,7 @@ const Home = () => {
                   <li key={idx} className="pricing-feature-item">{feature}</li>
                   )}
                   </ul>
-                  <Link to={`/rezervari?pachet=${encodeURIComponent(pkg.name)}`}>
+                  <Link to={`/rezervari?pachet=${encodeURIComponent(pkg.name)}&tip=${gameType}`}>
                     <Button className="btn-primary full-width">REZERVĂ</Button>
                   </Link>
                 </CardContent>

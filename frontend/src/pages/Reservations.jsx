@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Phone, Mail, MapPin, Clock, Calendar, MessageCircle } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, Calendar, MessageCircle, Crosshair, Target } from 'lucide-react';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { mockData } from '../mock';
@@ -17,7 +17,9 @@ const Reservations = () => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const preSelectedPackage = searchParams.get('pachet') || '';
+  const preSelectedGameType = searchParams.get('tip') || 'lasertag';
   
+  const [gameType, setGameType] = useState(preSelectedGameType);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -31,6 +33,8 @@ const Reservations = () => {
   const [availableTimes, setAvailableTimes] = useState([]);
   const [loadingTimes, setLoadingTimes] = useState(false);
   const { toast } = useToast();
+
+  const currentPricing = gameType === 'lasertag' ? mockData.pricingLasertag : mockData.pricingPaintball;
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -97,7 +101,8 @@ const Reservations = () => {
   };
 
   const handleWhatsAppReservation = () => {
-    const packageText = formData.package ? `Pachet selectat: ${formData.package}%0A` : '';
+    const gameTypeText = gameType === 'lasertag' ? 'Lasertag' : 'Paintball';
+    const packageText = formData.package ? `Pachet selectat: ${formData.package} (${gameTypeText})%0A` : `Tip joc: ${gameTypeText}%0A`;
     const message = `Bună! Aș dori să fac o rezervare:%0A%0A${packageText}Nume: ${formData.name}%0AEmail: ${formData.email}%0ATelefon: ${formData.phone}%0AData: ${formData.date}%0AOra: ${formData.time}%0ANumăr persoane: ${formData.people}%0AMesaj: ${formData.message}`;
     window.open(`https://wa.me/${mockData.contact.whatsapp.replace(/[^0-9]/g, '')}?text=${message}`, '_blank');
     toast({
@@ -107,7 +112,8 @@ const Reservations = () => {
   };
 
   const handleEmailReservation = () => {
-    const packageText = formData.package ? `Pachet selectat: ${formData.package}%0A` : '';
+    const gameTypeText = gameType === 'lasertag' ? 'Lasertag' : 'Paintball';
+    const packageText = formData.package ? `Pachet selectat: ${formData.package} (${gameTypeText})%0A` : `Tip joc: ${gameTypeText}%0A`;
     const subject = 'Rezervare Combat Zone Moisei';
     const body = `Bună!%0A%0AAș dori să fac o rezervare:%0A%0A${packageText}Nume: ${formData.name}%0AEmail: ${formData.email}%0ATelefon: ${formData.phone}%0AData: ${formData.date}%0AOra: ${formData.time}%0ANumăr persoane: ${formData.people}%0AMesaj: ${formData.message}`;
     window.open(`mailto:${mockData.contact.email}?subject=${subject}&body=${body}`, '_blank');
@@ -125,6 +131,30 @@ const Reservations = () => {
           <Calendar className="page-icon" style={{ color: '#FFFFFF' }} />
           <h1 className="page-title">REZERVĂRI</h1>
           <p className="page-subtitle">Rezervă-ți locul pentru cea mai tare experiență laser tag</p>
+          
+          {/* Game Type Toggle */}
+          <div className="game-type-toggle" data-testid="reservations-game-toggle">
+            <button 
+              className={`toggle-btn ${gameType === 'lasertag' ? 'active' : ''}`}
+              onClick={() => setGameType('lasertag')}
+              data-testid="reservations-lasertag-btn"
+            >
+              <Crosshair className="toggle-icon" />
+              Lasertag
+            </button>
+            <button 
+              className={`toggle-btn ${gameType === 'paintball' ? 'active' : ''}`}
+              onClick={() => setGameType('paintball')}
+              data-testid="reservations-paintball-btn"
+            >
+              <Target className="toggle-icon" />
+              Paintball
+            </button>
+          </div>
+          
+          <p className="payment-warning">
+            ⚠️ Rezervările se vor confirma doar după achitarea avansului de 50% din totalul rezervării
+          </p>
         </div>
       </section>
 
@@ -152,7 +182,7 @@ const Reservations = () => {
                       style={{ cursor: 'pointer' }}
                     >
                       <option value="">Selectează un pachet...</option>
-                      {mockData.pricing.map((pkg) => (
+                      {currentPricing.map((pkg) => (
                         <option key={pkg.id} value={pkg.name}>
                           {pkg.name} - {pkg.price}
                         </option>

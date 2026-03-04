@@ -1123,6 +1123,70 @@
 }
 
 /* ============================================
+   GAME TYPE TOGGLE
+============================================ */
+.game-type-toggle {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 32px;
+  font-family: 'Inter', Arial, sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: 2px solid var(--border-medium);
+  border-radius: 10rem;
+  background-color: transparent;
+  color: var(--text-white);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.toggle-btn:hover {
+  border-color: var(--brand-primary);
+  color: var(--brand-primary);
+}
+
+.toggle-btn.active {
+  background-color: var(--brand-primary);
+  border-color: var(--brand-primary);
+  color: var(--text-inverse);
+}
+
+.toggle-btn.active:hover {
+  background-color: var(--brand-hover);
+}
+
+.toggle-icon {
+  width: 20px;
+  height: 20px;
+}
+
+@media (max-width: 767px) {
+  .game-type-toggle {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .toggle-btn {
+    width: 100%;
+    max-width: 280px;
+    padding: 12px 24px;
+  }
+}
+
+/* ============================================
    ABOUT PAGE STYLES
 ============================================ */
 .content-section {

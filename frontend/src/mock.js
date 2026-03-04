@@ -69,6 +69,106 @@ export const mockData = {
     }
   ],
   
+  // Prețuri Lasertag
+  pricingLasertag: [
+    {
+      id: 1,
+      name: "Pachet simplu",
+      price: "125 RON/persoană",
+      duration: "",
+      features: [
+        "Acces la arenă pentru 6-12 persoane",
+        "Echipament complet inclus",
+        "Organizare pe echipe",
+        "Rezerve de apă la discreție",
+        "Scor individual afișat",
+        "3 sesiuni de joc (3 runde/30 minute)"
+      ],
+      popular: false
+    },
+    {
+      id: 2,
+      name: "Pachet full packed",
+      price: "175 RON/persoană",
+      duration: "",
+      features: [
+        "Acces pentru 6-12 persoane",
+        "Echipament complet inclus",
+        "Organizare pe echipe",
+        "O rezervă de pizza sau crispy pentru fiecare",
+        "Apă sau sucuri la discreție",
+        "3 sesiuni de joc (3 runde/30 minute)"
+      ],
+      popular: true
+    },
+    {
+      id: 3,
+      name: "Evenimente Private",
+      price: "Ofertă la cerere",
+      features: [
+        "Arenă exclusivă pentru grupul tău",
+        "Până la 12 persoane",
+        "Instructor dedicat",
+        "Turneu personalizat",
+        "Sesiuni de joc, cât te țin picioarele",
+        "Zonă privată de odihnă",
+        "Pachete refresh incluse"
+      ],
+      popular: false
+    }
+  ],
+
+  // Prețuri Paintball
+  pricingPaintball: [
+    {
+      id: 1,
+      name: "Pachet simplu",
+      price: "150 RON/persoană",
+      duration: "",
+      features: [
+        "Acces la arenă pentru 6-12 persoane",
+        "Echipament complet inclus (mască, armă, vestă)",
+        "100 bile paintball incluse",
+        "Organizare pe echipe",
+        "Rezerve de apă la discreție",
+        "2 sesiuni de joc (60 minute)"
+      ],
+      popular: false
+    },
+    {
+      id: 2,
+      name: "Pachet full packed",
+      price: "200 RON/persoană",
+      duration: "",
+      features: [
+        "Acces pentru 6-12 persoane",
+        "Echipament complet inclus (mască, armă, vestă)",
+        "200 bile paintball incluse",
+        "Organizare pe echipe",
+        "O rezervă de pizza sau crispy pentru fiecare",
+        "Apă sau sucuri la discreție",
+        "3 sesiuni de joc (90 minute)"
+      ],
+      popular: true
+    },
+    {
+      id: 3,
+      name: "Evenimente Private",
+      price: "Ofertă la cerere",
+      features: [
+        "Arenă exclusivă pentru grupul tău",
+        "Până la 12 persoane",
+        "Bile paintball nelimitate",
+        "Instructor dedicat",
+        "Turneu personalizat",
+        "Zonă privată de odihnă",
+        "Pachete refresh incluse"
+      ],
+      popular: false
+    }
+  ],
+
+  // Compatibilitate cu codul vechi
   pricing: [
     {
       id: 1,
