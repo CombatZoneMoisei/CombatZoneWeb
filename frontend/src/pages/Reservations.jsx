@@ -42,17 +42,17 @@ const Reservations = () => {
 
   // Fetch available times when date changes
   useEffect(() => {
-    if (formData.date) {
+    if (formData.date && gameType) {
       fetchAvailableTimes(formData.date);
     } else {
       setAvailableTimes([]);
     }
-  }, [formData.date]);
+  }, [formData.date, gameType]);
 
   const fetchAvailableTimes = async (date) => {
     setLoadingTimes(true);
     try {
-      const response = await axios.get(`${API}/reservations/available-times?date=${date}`);
+      const response = await axios.get(`${API}/reservations/available-times?date=${date}&game_type=${gameType || 'lasertag'}`);
       if (response.data.success) {
         setAvailableTimes(response.data.all_slots || []);
       }

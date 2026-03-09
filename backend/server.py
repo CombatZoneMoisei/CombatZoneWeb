@@ -6,11 +6,10 @@ import os
 import logging
 from pathlib import Path
 from pydantic import BaseModel, Field, ConfigDict
-from typing import List, Dict
+from typing import List, Dict, Optional
 import uuid
 from datetime import datetime, timezone
 from google_sheets_service import get_blocked_times, get_available_times_for_date
-
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
@@ -26,11 +25,10 @@ app = FastAPI()
 # Create a router with the /api prefix
 api_router = APIRouter(prefix="/api")
 
-
 # Define Models
 class StatusCheck(BaseModel):
     model_config = ConfigDict(extra="ignore")  # Ignore MongoDB's _id field
-    
+
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
     client_name: str
     timestamp: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
@@ -47,11 +45,11 @@ async def root():
 async def create_status_check(input: StatusCheckCreate):
     status_dict = input.model_dump()
     status_obj = StatusCheck(**status_dict)
-    
+
     # Convert to dict and serialize datetime to ISO string for MongoDB
     doc = status_obj.model_dump()
     doc['timestamp'] = doc['timestamp'].isoformat()
-    
+
     _ = await db.status_checks.insert_one(doc)
     return status_obj
 
@@ -59,42 +57,57 @@ async def create_status_check(input: StatusCheckCreate):
 async def get_status_checks():
     # Exclude MongoDB's _id field from the query results
     status_checks = await db.status_checks.find({}, {"_id": 0}).to_list(1000)
-    
+
     # Convert ISO string timestamps back to datetime objects
     for check in status_checks:
         if isinstance(check['timestamp'], str):
             check['timestamp'] = datetime.fromisoformat(check['timestamp'])
-    
-    return status_checks
 
+    return status_checks
 
 # Reservation endpoints
 @api_router.get("/reservations/blocked-times")
-async def get_blocked_time_slots():
-    """Get all blocked time slots from Google Sheets"""
+async def get_blocked_time_slots(
+    game_type: Optional[str] = Query(None, description="Tip activitate: 'Lasertag' sau 'Paintball'")
+):
+    """Get all blocked time slots from Google Sheets, optionally filtered by game type"""
     try:
-        print("INFO: API /reservations/blocked-times called")  # ← ADĂUGAT
-        blocked_slots = get_blocked_times()
-        print(f"INFO: Returning {len(blocked_slots)} blocked slots")  # ← ADĂUGAT
-        return {"success": True, "data": blocked_slots}
+        print(f"INFO: API /reservations/blocked-times called (game_type={game_type})")
+        blocked_slots = get_blocked_times(game_type=game_type)
+        print(f"INFO: Returning {len(blocked_slots)} blocked slots")
+        
+        # Serializăm datetime pentru JSON
+        serialized = []
+        for slot in blocked_slots:
+            serialized.append({
+                'start_datetime': slot['start_datetime'].isoformat(),
+                'end_datetime': slot['end_datetime'].isoformat(),
+                'date_iso': slot['date_iso'],
+                'game_type': slot.get('game_type', 'Lasertag')
+            })
+        
+        return {"success": True, "data": serialized}
     except Exception as e:
-        print(f"ERROR in get_blocked_time_slots: {e}")  # ← MODIFICAT
-        import traceback  # ← ADĂUGAT
-        traceback.print_exc()  # ← ADĂUGAT
+        print(f"ERROR in get_blocked_time_slots: {e}")
+        import traceback
+        traceback.print_exc()
         return {"success": False, "error": str(e), "data": []}
 
 @api_router.get("/reservations/available-times")
-async def get_available_times(date: str = Query(..., description="Date in YYYY-MM-DD format")):
-    """Get available time slots for a specific date"""
+async def get_available_times(
+    date: str = Query(..., description="Date in YYYY-MM-DD format"),
+    game_type: str = Query('Lasertag', description="Tip activitate: 'Lasertag' sau 'Paintball'")
+):
+    """Get available time slots for a specific date and game type"""
     try:
-        print(f"INFO: API /reservations/available-times called for date: {date}")  # ← ADĂUGAT
-        result = get_available_times_for_date(date)
-        print(f"INFO: Found {len(result.get('available', []))} available and {len(result.get('blocked', []))} blocked slots")  # ← ADĂUGAT
-        return {"success": True, "date": date, **result}
+        print(f"INFO: API /reservations/available-times called for date: {date}, game_type: {game_type}")
+        result = get_available_times_for_date(date, game_type=game_type)
+        print(f"INFO: [{game_type}] Found {len(result.get('available', []))} available and {len(result.get('blocked', []))} blocked slots")
+        return {"success": True, "date": date, "game_type": game_type, **result}
     except Exception as e:
-        print(f"ERROR in get_available_times: {e}")  # ← MODIFICAT
-        import traceback  # ← ADĂUGAT
-        traceback.print_exc()  # ← ADĂUGAT
+        print(f"ERROR in get_available_times: {e}")
+        import traceback
+        traceback.print_exc()
         return {"success": False, "error": str(e), "data": []}
 
 # Include the router in the main app
