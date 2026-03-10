@@ -24,7 +24,7 @@ const Header = () => {
       <div className="header-container">
         <Link to="/" className="logo-link">
           <img 
-            src="/logo.png" 
+            src="/combatzone.png" 
             alt="Combat Zone Moisei Logo" 
             className="logo-image"
           />

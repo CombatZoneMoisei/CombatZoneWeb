@@ -19,7 +19,7 @@ const Footer = () => {
           <div className="footer-section">
             <div className="footer-logo">
               <img 
-                src="/combat_zone_logo.png" 
+                src="/combatzone.png" 
                 alt="Combat Zone Moisei Logo" 
                 className="footer-logo-image"
               />
