@@ -100,7 +100,7 @@ const Home = () => {
         <div className="pricing-grid">
             {currentPricing.map((pkg) =>
             <Card key={pkg.id} className={`pricing-card ${pkg.popular ? 'popular' : ''}`} style={{ minHeight: '600px', display: 'flex', flexDirection: 'column' }}>
-                {pkg.popular && <div className="popular-badge">CEL MAI POPULAR</div>}
+                {pkg.popular && <div className="popular-badge"><Star className="toggle-icon" style={{ width: '16px', height: '16px', marginRight: '6px', fill: 'currentColor' }} />CEL MAI POPULAR</div>}
                 <CardHeader>
                   <CardTitle className="pricing-card-title !font-semibold !text-center">{pkg.name}</CardTitle>
                   <div className="pricing-card-price">
