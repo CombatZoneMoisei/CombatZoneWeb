@@ -272,7 +272,7 @@ const Reservations = () => {
       onKeyDown={(e) => e.preventDefault()}
       required
       className="form-input date-clickable"
-      min="2026-03-16"
+      min="2026-03-14"
       style={{ cursor: 'pointer' }}
     />
   </div>

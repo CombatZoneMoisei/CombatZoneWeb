@@ -100,7 +100,10 @@ const Home = () => {
         <div className="pricing-grid">
             {currentPricing.map((pkg) =>
             <Card key={pkg.id} className={`pricing-card ${pkg.popular ? 'popular' : ''}`} style={{ minHeight: '600px', display: 'flex', flexDirection: 'column' }}>
-                {pkg.popular && <div className="popular-badge"><Star className="toggle-icon" style={{ width: '16px', height: '16px', marginRight: '6px', fill: 'currentColor' }} />CEL MAI POPULAR</div>}
+                {pkg.popular && <div className="popular-ribbon">
+                                    <Star className="ribbon-icon" />
+                                    <span>CEL MAI POPULAR</span>
+                                  </div>}
                 <CardHeader>
                   <CardTitle className="pricing-card-title !font-semibold !text-center">{pkg.name}</CardTitle>
                   <div className="pricing-card-price">
@@ -187,7 +190,7 @@ const Home = () => {
       <section className="cta-section">
         <div className="container">
           <h2 className="cta-title">GATA SĂ ÎNCEPI AVENTURA?</h2>
-          <p className="cta-subtitle">Rezervă-ți locul acum și trăiește experiența laser tag!</p>
+          <p className="cta-subtitle">Rezervă-ți locul acum și trăiește experiența Combat Zone!</p>
           <Link to="/rezervari">
             <Button className="btn-primary large">REZERVĂ ACUM</Button>
           </Link>

@@ -116,8 +116,8 @@ def get_blocked_times(game_type: Optional[str] = None) -> List[Dict]:
 # --- BLOCAJ MANUAL SEPARAT PE TIP ACTIVITATE ---
 # Setează data până la care rezervările sunt blocate pentru fiecare tip.
 # Pune None dacă nu vrei blocaj pentru acel tip.
-MANUAL_BLOCK_UNTIL_LASERTAG = datetime(2026, 3, 24)   # Blocaj lasertag până pe 24/03/2026
-MANUAL_BLOCK_UNTIL_PAINTBALL = datetime(2026, 3, 24)   # Blocaj paintball până pe 24/03/2026
+MANUAL_BLOCK_UNTIL_LASERTAG = datetime(2026, 4, 1)   # Blocaj lasertag până pe 31/03/2026
+MANUAL_BLOCK_UNTIL_PAINTBALL = datetime(2026, 3, 14)   # Blocaj paintball până pe 14/03/2026
 
 
 def is_time_blocked(date_to_check: str, time_to_check: str, blocked_slots: List[Dict], game_type: str = 'lasertag') -> bool:
