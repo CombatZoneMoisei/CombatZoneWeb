@@ -34,7 +34,8 @@ const Reservations = () => {
   const [loadingTimes, setLoadingTimes] = useState(false);
   const { toast } = useToast();
 
-  const currentPricing = gameType === 'lasertag' ? mockData.pricingLasertag : gameType === 'paintball' ? mockData.pricingPaintball : [];
+  const allPricing = gameType === 'lasertag' ? mockData.pricingLasertag : gameType === 'paintball' ? mockData.pricingPaintball : [];
+  const currentPricing = allPricing.filter(pkg => pkg.name !== 'Refill');
 
   useEffect(() => {
     window.scrollTo(0, 0);

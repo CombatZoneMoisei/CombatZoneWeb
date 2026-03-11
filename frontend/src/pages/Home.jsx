@@ -7,7 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../co
 
 const Home = () => {
   const [gameType, setGameType] = useState('lasertag');
-  
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -74,10 +74,10 @@ const Home = () => {
         <div className="container">
           <h2 className="section-title">TARIFELE NOASTRE</h2>
             <p className="section-subtitle">Alege pachetul potrivit pentru tine</p>
-            
+
             {/* Game Type Toggle */}
             <div className="game-type-toggle" data-testid="home-game-toggle">
-              <button 
+              <button
                 className={`toggle-btn ${gameType === 'lasertag' ? 'active' : ''}`}
                 onClick={() => setGameType('lasertag')}
                 data-testid="home-lasertag-btn"
@@ -85,7 +85,7 @@ const Home = () => {
                 <Crosshair className="toggle-icon" />
                 Lasertag
               </button>
-              <button 
+              <button
                 className={`toggle-btn ${gameType === 'paintball' ? 'active' : ''}`}
                 onClick={() => setGameType('paintball')}
                 data-testid="home-paintball-btn"
@@ -94,7 +94,7 @@ const Home = () => {
                 Paintball
               </button>
             </div>
-            
+
             <p className="payment-warning">
              ⚠️ Rezervările se vor confirma doar după achitarea avansului de 50% din totalul rezervării</p>
         <div className="pricing-grid">
@@ -121,9 +121,11 @@ const Home = () => {
                   <li key={idx} className="pricing-feature-item">{feature}</li>
                   )}
                   </ul>
-                  <Link to={`/rezervari?pachet=${encodeURIComponent(pkg.name)}&tip=${gameType}`}>
-                    <Button className="btn-primary full-width">REZERVĂ</Button>
-                  </Link>
+                  {pkg.name !== 'Refill' && (
+                    <Link to={`/rezervari?pachet=${encodeURIComponent(pkg.name)}&tip=${gameType}`}>
+                      <Button className="btn-primary full-width">REZERVĂ</Button>
+                    </Link>
+                  )}
                 </CardContent>
               </Card>
             )}

@@ -113,13 +113,25 @@ def get_blocked_times(game_type: Optional[str] = None) -> List[Dict]:
     return all_blocked_slots
 
 
-def is_time_blocked(date_to_check: str, time_to_check: str, blocked_slots: List[Dict]) -> bool:
+# --- BLOCAJ MANUAL SEPARAT PE TIP ACTIVITATE ---
+# Setează data până la care rezervările sunt blocate pentru fiecare tip.
+# Pune None dacă nu vrei blocaj pentru acel tip.
+MANUAL_BLOCK_UNTIL_LASERTAG = datetime(2026, 3, 31)   # Blocaj lasertag până pe 01/04/2026
+MANUAL_BLOCK_UNTIL_PAINTBALL = datetime(2026, 3, 13)   # Blocaj paintball până pe 14/03/2026
+
+
+def is_time_blocked(date_to_check: str, time_to_check: str, blocked_slots: List[Dict], game_type: str = 'lasertag') -> bool:
     """Verifică dacă intervalul se suprapune cu o rezervare existentă"""
     try:
-        # 1. Blocaj manual până pe 24/03/2026
+        # 1. Blocaj manual separat pe tip de activitate
         check_date_dt = datetime.strptime(date_to_check, "%Y-%m-%d")
-        if check_date_dt <= datetime(2026, 3, 24):
-            return True
+
+        if game_type == 'lasertag' and MANUAL_BLOCK_UNTIL_LASERTAG:
+            if check_date_dt <= MANUAL_BLOCK_UNTIL_LASERTAG:
+                return True
+        elif game_type == 'paintball' and MANUAL_BLOCK_UNTIL_PAINTBALL:
+            if check_date_dt <= MANUAL_BLOCK_UNTIL_PAINTBALL:
+                return True
 
         proposed_start = datetime.strptime(f"{date_to_check} {time_to_check}", "%Y-%m-%d %H:%M")
         proposed_end = proposed_start + timedelta(minutes=SESSION_DURATION_MINUTES)
@@ -157,7 +169,7 @@ def get_available_times_for_date(date_str: str, game_type: str = 'lasertag') -> 
         for minute in range(0, 60, SLOT_INTERVAL_MINUTES):
             t_str = f"{hour:02d}:{minute:02d}"
 
-            if is_time_blocked(date_str, t_str, blocked_slots):
+            if is_time_blocked(date_str, t_str, blocked_slots, game_type=game_type):
                 blocked.append({'time': t_str, 'available': False})
             else:
                 available.append({'time': t_str, 'available': True})

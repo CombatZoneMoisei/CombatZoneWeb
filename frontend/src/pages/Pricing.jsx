@@ -86,11 +86,13 @@ const Pricing = () => {
                       </li>
                     ))}
                   </ul>
-                  <Link to={`/rezervari?pachet=${encodeURIComponent(pkg.name)}&tip=${gameType}`}>
-                    <Button className={pkg.popular ? 'btn-primary full-width' : 'btn-secondary full-width'}>
-                      REZERVĂ ACUM
-                    </Button>
-                  </Link>
+                  {pkg.name !== 'Refill' && (
+                    <Link to={`/rezervari?pachet=${encodeURIComponent(pkg.name)}&tip=${gameType}`}>
+                      <Button className={pkg.popular ? 'btn-primary full-width' : 'btn-secondary full-width'}>
+                        REZERVĂ ACUM
+                      </Button>
+                    </Link>
+                  )}
                 </CardContent>
               </Card>
             ))}
