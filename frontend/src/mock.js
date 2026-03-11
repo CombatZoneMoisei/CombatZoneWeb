@@ -124,7 +124,6 @@ export const mockData = {
       id: 1,
       name: "Pachet Paintball",
       price: "150 RON/persoană",
-      duration: "",
       features: [
         "Acces pentru 6-12 persoane",
         "Echipament complet inclus (mască, armă, salopetă)",
@@ -139,7 +138,6 @@ export const mockData = {
       id: 2,
       name: "Refill",
       price: "30 RON/100 bile",
-      duration: "",
       features: [
         "Refill necesar pentru continuarea jocului după epuizarea bilelor inițiale",
         "Bile de paintball de calitate superioară pentru o experiență optimă",
