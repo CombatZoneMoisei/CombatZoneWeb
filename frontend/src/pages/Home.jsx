@@ -73,7 +73,7 @@ const Home = () => {
       <section className="pricing-preview-section">
         <div className="container">
           <h2 className="section-title">TARIFELE NOASTRE</h2>
-            <p className="section-subtitle">Alege pachetul potrivit pentru tine</p>
+            <p className="section-subtitle">Alege pachetul și activitatea potrivită pentru tine</p>
 
             {/* Game Type Toggle */}
             <div className="game-type-toggle" data-testid="home-game-toggle">
@@ -116,7 +116,28 @@ const Home = () => {
                   <span style={{ fontSize: '2rem' }}>{pkg.price}</span>
                   }
                   </div>
-                  {pkg.duration && <CardDescription className="pricing-card-duration">{pkg.duration}</CardDescription>}
+                  {pkg.duration && (
+                    <div className="duration-indicator" style={{ 
+                      display: 'flex', 
+                      alignItems: 'center', 
+                      justifyContent: 'center', 
+                      gap: '6px',
+                      marginTop: '8px',
+                      padding: '6px 12px',
+                      borderRadius: '20px',
+                      backgroundColor: 'rgba(206, 255, 0, 0.1)',
+                      width: 'fit-content',
+                      margin: '8px auto 0'
+                    }}>
+                      <Clock style={{ width: '16px', height: '16px', color: '#ceff00', flexShrink: 0 }} />
+                      <span style={{ 
+                        color: '#ceff00', 
+                        fontSize: 'clamp(0.75rem, 2vw, 0.875rem)', 
+                        fontWeight: '500',
+                        whiteSpace: 'nowrap'
+                      }}>{pkg.duration}</span>
+                    </div>
+                  )}
                 </CardHeader>
                 <CardContent style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                   <ul className="pricing-features">

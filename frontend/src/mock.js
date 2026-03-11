@@ -27,6 +27,93 @@ export const mockData = {
     ]
   },
   
+  // Reguli Lasertag
+  rulesLasertag: [
+    {
+      title: "Echipament și Pregătire",
+      rules: [
+        "Purtați echipamentul de protecție furnizat pe toată durata jocului",
+        "Verificați că vesta și arma sunt corect poziționate înainte de start",
+        "Ascultați cu atenție briefing-ul instructorului",
+        "Păstrați echipamentul în stare bună - nu-l aruncați sau loviți"
+      ]
+    },
+    {
+      title: "Conduită în Arenă",
+      rules: [
+        "Nu alergați - deplasarea se face în ritm alert dar controlat",
+        "Nu împingeți și nu atingeți fizic adversarii",
+        "Nu acoperiți senzorii vestei cu mâinile sau alte obiecte",
+        "Respectați limitele marcate ale arenei",
+        "În caz de urgență, ridicați ambele mâini și strigați 'STOP'"
+      ]
+    },
+    {
+      title: "Regulile Jocului",
+      rules: [
+        "Scopul este să acumulați cât mai multe puncte lovind senzorii adversarilor",
+        "Când sunteți lovit, vesta se dezactivează timp de 5 secunde",
+        "Nu blocați pasajele sau intrările strategice",
+        "Jucați fair-play - competiția este distracția, nu conflictul",
+        "Respectați semnalele sonore de start și final ale jocului"
+      ]
+    },
+    {
+      title: "Restricții și Siguranță",
+      rules: [
+        "Vârsta minimă: 8 ani (cu supraveghere adult pentru 8-12 ani)",
+        "Nu este permis accesul cu alimente, băuturi sau obiecte personale în arenă",
+        "Nu sunt permise telefoane mobile în timpul jocului",
+        "Persoanele cu probleme medicale (cardiace, epilepsie) trebuie să anunțe personalul",
+        "Îmbrăcăminte recomandată: haine comode și încălțăminte sport"
+      ]
+    }
+  ],
+
+  // Reguli Paintball
+  rulesPaintball: [
+    {
+      title: "Echipament și Pregătire",
+      rules: [
+        "Masca de protecție trebuie purtată OBLIGATORIU în arenă - nu o scoateți niciodată",
+        "Salopeta de protecție vă protejează de vânătăi - purtați-o corect",
+        "Verificați că arma este în siguranță (barrel sock) înainte de a intra în arenă",
+        "Ascultați briefing-ul instructorului cu atenție - regulile sunt pentru siguranța voastră"
+      ]
+    },
+    {
+      title: "Conduită în Arenă",
+      rules: [
+        "Nu trageți de la distanță mai mică de 5 metri - lovitura poate fi dureroasă",
+        "Nu împingeți și nu atingeți fizic adversarii",
+        "Nu scoateți masca de protecție în arenă - NICIODATĂ",
+        "Respectați limitele marcate ale arenei",
+        "În caz de urgență, ridicați ambele mâini și strigați 'STOP' - jocul se oprește imediat"
+      ]
+    },
+    {
+      title: "Regulile Jocului",
+      rules: [
+        "Când sunteți lovit și vopseaua explodează, sunteți eliminat - ridicați mâna și părăsiți arena",
+        "Lovituri pe echipament sau armă nu contează - doar pe corp",
+        "Nu ștergeți vopseaua pentru a continua jocul - aceasta este trișat",
+        "Jucați fair-play - competiția este distracția, nu conflictul",
+        "Respectați semnalele de start și final ale instructorului"
+      ]
+    },
+    {
+      title: "Restricții și Siguranță",
+      rules: [
+        "Vârsta minimă: 12 ani (cu supraveghere adult pentru 12-16 ani)",
+        "Nu este permis accesul cu alimente, băuturi sau obiecte personale în arenă",
+        "Nu sunt permise telefoane mobile în timpul jocului",
+        "Persoanele cu probleme medicale (cardiace, epilepsie) trebuie să anunțe personalul",
+        "Îmbrăcăminte recomandată: haine vechi pe care nu vă pare rău să le pătați, încălțăminte sport"
+      ]
+    }
+  ],
+
+  // Compatibilitate cu codul vechi
   rules: [
     {
       title: "Echipament și Pregătire",
@@ -73,9 +160,9 @@ export const mockData = {
   pricingLasertag: [
     {
       id: 1,
-      name: "Pachet simplu",
+      name: "Pachet Simplu",
       price: "125 RON/persoană",
-      duration: "",
+      duration: "90 minute joc intens",
       features: [
         "Acces la arenă pentru 6-12 persoane",
         "Echipament complet inclus",
@@ -88,9 +175,9 @@ export const mockData = {
     },
     {
       id: 2,
-      name: "Pachet full packed",
+      name: "Pachet Full",
       price: "175 RON/persoană",
-      duration: "",
+      duration: "90 minute joc intens",
       features: [
         "Acces pentru 6-12 persoane",
         "Echipament complet inclus",
@@ -105,6 +192,7 @@ export const mockData = {
       id: 3,
       name: "Evenimente Private",
       price: "Ofertă la cerere",
+      duration: "Joc intens toată ziua",
       features: [
         "Arenă exclusivă pentru grupul tău",
         "Până la 12 persoane",
@@ -123,11 +211,12 @@ export const mockData = {
     {
       id: 1,
       name: "Pachet Paintball",
-      price: "150 RON/persoană",
+      price: "120 RON/persoană",
+      duration: "120 minute joc intens",
       features: [
         "Acces pentru 6-12 persoane",
         "Echipament complet inclus (mască, armă, salopetă)",
-        "500 bile paintball incluse",
+        "300 bile paintball incluse",
         "Organizare pe echipe sau individual",
         "Apă la discreție",
         "Sesiune de joc de 2 ore sau epuizarea bilelor"
@@ -138,6 +227,7 @@ export const mockData = {
       id: 2,
       name: "Refill",
       price: "30 RON/100 bile",
+      duration: "",
       features: [
         "Refill necesar pentru continuarea jocului după epuizarea bilelor inițiale",
         "Bile de paintball de calitate superioară pentru o experiență optimă",
@@ -149,6 +239,7 @@ export const mockData = {
       id: 3,
       name: "Evenimente Private",
       price: "Ofertă la cerere",
+      duration: "Joc intens toată ziua",
       features: [
         "Arenă exclusivă pentru grupul tău",
         "Până la 12 persoane",
@@ -166,9 +257,9 @@ export const mockData = {
   pricing: [
     {
       id: 1,
-      name: "Pachet simplu",
+      name: "Pachet Simplu",
       price: "125 RON/persoană",
-      duration: "",
+      duration: "90 minute joc intens",
       features: [
         "Acces la arenă pentru 6-12 persoane",
         "Echipament complet inclus",
@@ -181,9 +272,9 @@ export const mockData = {
     },
     {
       id: 2,
-      name: "Pachet full packed",
+      name: "Pachet Full",
       price: "175 RON/persoană",
-      duration: "",
+      duration: "90 minute joc intens",
       features: [
         "Acces pentru 6-12 persoane",
         "Echipament complet inclus",
@@ -198,6 +289,7 @@ export const mockData = {
       id: 3,
       name: "Evenimente Private",
       price: "Ofertă la cerere",
+      duration: "Joc intens toată ziua",
       features: [
         "Arenă exclusivă pentru grupul tău",
         "Până la 12 persoane",

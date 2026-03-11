@@ -1,13 +1,17 @@
-import React, { useEffect } from 'react';
-import { Shield, AlertTriangle, CheckCircle } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { Shield, AlertTriangle, CheckCircle, Crosshair, Target } from 'lucide-react';
 import { mockData } from '../mock';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../components/ui/accordion';
 import { Card, CardContent } from '../components/ui/card';
 
 const Rules = () => {
+  const [gameType, setGameType] = useState('lasertag');
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const currentRules = gameType === 'lasertag' ? mockData.rulesLasertag : mockData.rulesPaintball;
 
   return (
     <div className="rules-page">
@@ -17,6 +21,26 @@ const Rules = () => {
           <Shield className="page-icon" />
           <h1 className="page-title">REGULAMENT</h1>
           <p className="page-subtitle">Reguli importante pentru o experiență sigură și distractivă</p>
+          
+          {/* Game Type Toggle */}
+          <div className="game-type-toggle" data-testid="rules-game-toggle">
+            <button
+              className={`toggle-btn ${gameType === 'lasertag' ? 'active' : ''}`}
+              onClick={() => setGameType('lasertag')}
+              data-testid="rules-lasertag-btn"
+            >
+              <Crosshair className="toggle-icon" />
+              Lasertag
+            </button>
+            <button
+              className={`toggle-btn ${gameType === 'paintball' ? 'active' : ''}`}
+              onClick={() => setGameType('paintball')}
+              data-testid="rules-paintball-btn"
+            >
+              <Target className="toggle-icon" />
+              Paintball
+            </button>
+          </div>
         </div>
       </section>
 
@@ -43,8 +67,8 @@ const Rules = () => {
       <section className="rules-section">
         <div className="container">
           <Accordion type="single" collapsible className="rules-accordion">
-            {mockData.rules.map((category, index) => (
-              <AccordionItem key={index} value={`item-${index}`} className="accordion-item">
+            {currentRules.map((category, index) => (
+              <AccordionItem key={`${gameType}-${index}`} value={`item-${index}`} className="accordion-item">
                 <AccordionTrigger className="accordion-trigger">
                   <div className="trigger-content">
                     <CheckCircle className="trigger-icon" />

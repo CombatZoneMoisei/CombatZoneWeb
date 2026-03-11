@@ -19,10 +19,37 @@ SHEET_URL_PAINTBALL = os.environ.get(
     'https://docs.google.com/spreadsheets/d/e/2PACX-1vSRv3VttVsbFUj1YPoYYrc1_CVrQYT5SeZEOh8CeSYmlOawZEtnOWu-9JvyuR77xmfSnoVdXi8FVSYG/pub?gid=33968318&single=true&output=csv'
 )
 
-SESSION_DURATION_MINUTES = int(os.environ.get('SESSION_DURATION_MINUTES', '90'))
+# Durata sesiunii de joc pentru fiecare tip de activitate
+SESSION_DURATION_LASERTAG = int(os.environ.get('SESSION_DURATION_LASERTAG', '90'))  # 90 minute joc
+SESSION_DURATION_PAINTBALL = int(os.environ.get('SESSION_DURATION_PAINTBALL', '120'))  # 120 minute joc
+
+# Timp de pregătire între sesiuni (pentru echipament, testare, etc.)
+PREP_TIME_LASERTAG = int(os.environ.get('PREP_TIME_LASERTAG', '30'))  # 30 minute pregătire
+PREP_TIME_PAINTBALL = int(os.environ.get('PREP_TIME_PAINTBALL', '60'))  # 60 minute pregătire
+
+# Intervalul total blocat = sesiune + pregătire
+# Lasertag: 90 + 30 = 120 minute (2 ore între rezervări)
+# Paintball: 120 + 60 = 180 minute (3 ore între rezervări)
+
 OPERATING_HOURS_START = int(os.environ.get('OPERATING_HOURS_START', '10'))
 OPERATING_HOURS_END = int(os.environ.get('OPERATING_HOURS_END', '21'))
 SLOT_INTERVAL_MINUTES = int(os.environ.get('SLOT_INTERVAL_MINUTES', '30'))
+
+
+def _get_session_config(game_type: str) -> dict:
+    """Returnează configurația pentru tipul de activitate specificat"""
+    if game_type == 'paintball':
+        return {
+            'session_duration': SESSION_DURATION_PAINTBALL,
+            'prep_time': PREP_TIME_PAINTBALL,
+            'total_block_duration': SESSION_DURATION_PAINTBALL + PREP_TIME_PAINTBALL  # 180 min
+        }
+    # Default: lasertag
+    return {
+        'session_duration': SESSION_DURATION_LASERTAG,
+        'prep_time': PREP_TIME_LASERTAG,
+        'total_block_duration': SESSION_DURATION_LASERTAG + PREP_TIME_LASERTAG  # 120 min
+    }
 
 
 def _get_sheet_url(game_type: str) -> str:
@@ -88,16 +115,21 @@ def get_blocked_times(game_type: Optional[str] = None) -> List[Dict]:
                     # Format așteptat: 25/03/2026 și 14:30
                     full_dt_str = f"{date_str} {time_str}"
                     start_time = datetime.strptime(full_dt_str, "%d/%m/%Y %H:%M")
-                    end_time = start_time + timedelta(minutes=SESSION_DURATION_MINUTES)
+                    
+                    # Folosim durata totală (sesiune + pregătire) pentru blocaj
+                    config = _get_session_config(gt)
+                    end_time = start_time + timedelta(minutes=config['total_block_duration'])
 
                     blocked_slots.append({
                         'start_datetime': start_time,
                         'end_datetime': end_time,
                         'date_iso': start_time.strftime('%Y-%m-%d'),
-                        'game_type': gt
+                        'game_type': gt,
+                        'session_duration': config['session_duration'],
+                        'prep_time': config['prep_time']
                     })
 
-                    print(f"DEBUG: [{gt}] Row {row_count} - Added: {date_str} {time_str}")
+                    print(f"DEBUG: [{gt}] Row {row_count} - Added: {date_str} {time_str} (blocked until {end_time.strftime('%H:%M')})")
                 except ValueError as ve:
                     print(f"DEBUG: [{gt}] Format invalid pentru rândul {row_count}: {date_str} {time_str} - {ve}")
                     continue
@@ -133,8 +165,10 @@ def is_time_blocked(date_to_check: str, time_to_check: str, blocked_slots: List[
             if check_date_dt < MANUAL_BLOCK_UNTIL_PAINTBALL:
                 return True
 
+        # Folosim durata totală pentru tipul de activitate
+        config = _get_session_config(game_type)
         proposed_start = datetime.strptime(f"{date_to_check} {time_to_check}", "%Y-%m-%d %H:%M")
-        proposed_end = proposed_start + timedelta(minutes=SESSION_DURATION_MINUTES)
+        proposed_end = proposed_start + timedelta(minutes=config['total_block_duration'])
 
         # 2. Verificare suprapunere (Overlap logic)
         for slot in blocked_slots:

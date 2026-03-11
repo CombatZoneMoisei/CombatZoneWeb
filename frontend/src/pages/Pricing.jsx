@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Check, Star, Crosshair, Target } from 'lucide-react';
+import { Check, Star, Crosshair, Target, Clock } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { mockData } from '../mock';
 import { Button } from '../components/ui/button';
@@ -20,7 +20,7 @@ const Pricing = () => {
       <section className="page-header">
         <div className="container">
           <h1 className="page-title">TARIFE</h1>
-            <p className="page-subtitle">Pachete flexibile pentru fiecare tip de jucător</p>
+            <p className="page-subtitle">Alege pachetul și activitatea potrivită pentru tine</p>
 
             {/* Game Type Toggle */}
             <div className="game-type-toggle" data-testid="pricing-game-toggle">
@@ -72,9 +72,27 @@ const Pricing = () => {
                         <span className="pricing-price-full pricing-price-special">{pkg.price}</span>
                       )}
                     </div>
-                    <CardDescription className="pricing-desc">
-                      {pkg.id === 3 ? 'Joc intens toata ziua' : '90 minute de joc intens'}
-                    </CardDescription>
+                    {pkg.duration && (
+                      <div className="duration-indicator" style={{ 
+                        display: 'flex', 
+                        alignItems: 'center', 
+                        justifyContent: 'center', 
+                        gap: '6px',
+                        marginTop: '4px',
+                        padding: '6px 12px',
+                        borderRadius: '20px',
+                        backgroundColor: 'rgba(206, 255, 0, 0.1)',
+                        width: 'fit-content'
+                      }}>
+                        <Clock style={{ width: '16px', height: '16px', color: '#ceff00', flexShrink: 0 }} />
+                        <span style={{ 
+                          color: '#ceff00', 
+                          fontSize: 'clamp(0.75rem, 2vw, 0.875rem)', 
+                          fontWeight: '500',
+                          whiteSpace: 'nowrap'
+                        }}>{pkg.duration}</span>
+                      </div>
+                    )}
                   </div>
                 </CardHeader>
                 <CardContent className="pricing-content pricing-content-flex">
