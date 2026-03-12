@@ -145,7 +145,7 @@ const Home = () => {
                   <li key={idx} className="pricing-feature-item">{feature}</li>
                   )}
                   </ul>
-                  {pkg.name !== 'Refill' && (
+                  {pkg.name !== 'Refill' && pkg.name !== 'Evenimente Private' && (
                     <Link to={`/rezervari?pachet=${encodeURIComponent(pkg.name)}&tip=${gameType}`}>
                       <Button className="btn-primary full-width">REZERVĂ</Button>
                     </Link>

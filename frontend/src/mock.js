@@ -243,7 +243,6 @@ export const mockData = {
       features: [
         "Arenă exclusivă pentru grupul tău",
         "Până la 12 persoane",
-        "Bile paintball nelimitate",
         "Instructor dedicat",
         "Turneu personalizat",
         "Zonă privată de odihnă",

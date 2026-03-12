@@ -21,15 +21,15 @@ SHEET_URL_PAINTBALL = os.environ.get(
 
 # Durata sesiunii de joc pentru fiecare tip de activitate
 SESSION_DURATION_LASERTAG = int(os.environ.get('SESSION_DURATION_LASERTAG', '90'))  # 90 minute joc
-SESSION_DURATION_PAINTBALL = int(os.environ.get('SESSION_DURATION_PAINTBALL', '120'))  # 120 minute joc
+SESSION_DURATION_PAINTBALL = int(os.environ.get('SESSION_DURATION_PAINTBALL', '90'))  # 90 minute joc
 
 # Timp de pregătire între sesiuni (pentru echipament, testare, etc.)
-PREP_TIME_LASERTAG = int(os.environ.get('PREP_TIME_LASERTAG', '30'))  # 30 minute pregătire
+PREP_TIME_LASERTAG = int(os.environ.get('PREP_TIME_LASERTAG', '60'))  # 60 minute pregătire
 PREP_TIME_PAINTBALL = int(os.environ.get('PREP_TIME_PAINTBALL', '60'))  # 60 minute pregătire
 
 # Intervalul total blocat = sesiune + pregătire
-# Lasertag: 90 + 30 = 120 minute (2 ore între rezervări)
-# Paintball: 120 + 60 = 180 minute (3 ore între rezervări)
+# Lasertag: 90 + 60 = 150 minute (2.5 ore între rezervări)
+# Paintball: 90 + 60 = 150 minute (2.5 ore între rezervări)
 
 OPERATING_HOURS_START = int(os.environ.get('OPERATING_HOURS_START', '10'))
 OPERATING_HOURS_END = int(os.environ.get('OPERATING_HOURS_END', '21'))
@@ -42,13 +42,13 @@ def _get_session_config(game_type: str) -> dict:
         return {
             'session_duration': SESSION_DURATION_PAINTBALL,
             'prep_time': PREP_TIME_PAINTBALL,
-            'total_block_duration': SESSION_DURATION_PAINTBALL + PREP_TIME_PAINTBALL  # 180 min
+            'total_block_duration': SESSION_DURATION_PAINTBALL + PREP_TIME_PAINTBALL  # 150 min
         }
     # Default: lasertag
     return {
         'session_duration': SESSION_DURATION_LASERTAG,
         'prep_time': PREP_TIME_LASERTAG,
-        'total_block_duration': SESSION_DURATION_LASERTAG + PREP_TIME_LASERTAG  # 120 min
+        'total_block_duration': SESSION_DURATION_LASERTAG + PREP_TIME_LASERTAG  # 150 min
     }
 
 

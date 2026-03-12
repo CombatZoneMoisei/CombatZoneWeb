@@ -35,7 +35,7 @@ const Reservations = () => {
   const { toast } = useToast();
 
   const allPricing = gameType === 'lasertag' ? mockData.pricingLasertag : gameType === 'paintball' ? mockData.pricingPaintball : [];
-  const currentPricing = allPricing.filter(pkg => pkg.name !== 'Refill');
+  const currentPricing = allPricing.filter(pkg => pkg.name !== 'Refill' && pkg.name !== 'Evenimente Private');
 
   useEffect(() => {
     window.scrollTo(0, 0);

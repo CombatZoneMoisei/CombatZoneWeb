@@ -104,7 +104,7 @@ const Pricing = () => {
                       </li>
                     ))}
                   </ul>
-                  {pkg.name !== 'Refill' && (
+                  {pkg.name !== 'Refill' && pkg.name !== 'Evenimente Private' && (
                     <Link to={`/rezervari?pachet=${encodeURIComponent(pkg.name)}&tip=${gameType}`}>
                       <Button className={pkg.popular ? 'btn-primary full-width' : 'btn-secondary full-width'}>
                         REZERVĂ ACUM
