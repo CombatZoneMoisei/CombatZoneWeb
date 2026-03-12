@@ -212,14 +212,15 @@ export const mockData = {
       id: 1,
       name: "Pachet Paintball",
       price: "120 RON/persoană",
-      duration: "120 minute joc intens",
+      duration: "90 minute joc intens",
       features: [
         "Acces pentru 6-12 persoane",
+        "Vârstă minimă: 18 ani!",
         "Echipament complet inclus (mască, armă, salopetă)",
         "300 bile paintball incluse",
         "Organizare pe echipe sau individual",
         "Apă la discreție",
-        "Sesiune de joc de 2 ore sau epuizarea bilelor"
+        "Sesiune de joc de 1.5 ore sau epuizarea bilelor"
       ],
       popular: true
     },
