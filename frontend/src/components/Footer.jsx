@@ -25,7 +25,7 @@ const Footer = () => {
               />
             </Link>
             <p className="footer-description">
-              Experimentează adrenalina jocului futuristic de laser tag în cea mai modernă arenă exterioară din Maramureș.
+              Trăiește adrenalina jocurilor tactice în cea mai modernă arenă montană din Maramureș.
             </p>
             <div className="footer-social">
               <a href={mockData.contact.socialMedia.facebook} target="_blank" rel="noopener noreferrer" className="social-link">

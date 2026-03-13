@@ -48,22 +48,22 @@ const Home = () => {
             <div className="feature-card">
               <Shield className="feature-icon" />
               <h3 className="feature-title">Siguranță Maximă</h3>
-              <p className="feature-description">Echipament profesional și instructori experimentați pentru o experiență sigură</p>
+              <p className="feature-description">Echipament profesional și instructori experimentați pentru o experiență sigură.</p>
             </div>
             <div className="feature-card">
               <Users className="feature-icon" />
               <h3 className="feature-title">Pentru Toate Vârstele</h3>
-              <p className="feature-description">Distracție garantată pentru copii, adolescenți și adulți</p>
+              <p className="feature-description">Distracție garantată pentru copii, adolescenți și adulți.</p>
             </div>
             <div className="feature-card">
               <Clock className="feature-icon" />
               <h3 className="feature-title">Program Flexibil</h3>
-              <p className="feature-description">Deschis zilnic (10:00 - 22:00) cu opțiuni de rezervare la orice oră</p>
+              <p className="feature-description">Deschis zilnic (10:00 - 22:00) cu opțiuni de rezervare la orice oră.</p>
             </div>
             <div className="feature-card">
               <Star className="feature-icon" />
               <h3 className="feature-title">Tehnologie Avansată</h3>
-              <p className="feature-description">Echipament high-tech și arenă exterioară strategic și bine aranjată</p>
+              <p className="feature-description">Tehnologie premium în decor tactic montan.</p>
             </div>
           </div>
         </div>
@@ -161,7 +161,7 @@ const Home = () => {
       <section className="gallery-preview-section">
         <div className="container">
           <h2 className="section-title">COLECȚIE FOTO</h2>
-          <p className="section-subtitle">Capturile noastre cele mai bune momente</p>
+          <p className="section-subtitle">Capturile noastre cu cele mai bune momente</p>
           <div className="gallery-grid">
             {mockData.gallery.slice(0, 4).map((image) =>
             <div key={image.id} className="gallery-item">

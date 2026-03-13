@@ -3,27 +3,27 @@
 export const mockData = {
   hero: {
     title: "Combat Zone Moisei",
-    subtitle: "Experimentează adrenalina jocului futuristic de laser tag",
+    subtitle: "Alege-ți aventura: Adrenalina Lasertag-ului sau strategia Paintball-ului, totul într-un singur loc!",
     description: "Alătură-te unei aventuri captivante în arena noastră exterioară. Jocuri intense, echipament de ultimă generație și distracție garantată pentru toate vârstele."
   },
   
   about: {
     history: "Combat Zone Moisei a fost înființată în 2026 cu scopul de a oferi o experiență unică de divertisment în regiunea Maramureșului istoric. În acest an, am devenit destinația preferată pentru petreceri, team building-uri și sesiuni de joc pline de adrenalină.",
-    mission: "Misiunea noastră este să oferim fiecărui jucător o experiență de neuitat, combinând tehnologia modernă cu atmosfera captivantă a jocului de laser tag. Creăm momente de bucurie și competiție sănătoasă într-un mediu sigur și profesional.",
+    mission: "Misiunea noastră este să oferim fiecărui aventurier o experiență de neuitat, fie că alege precizia tehnologiei Lasertag sau strategia intensă a Paintball-ului. Construim un spațiu unde distracția întâlnește competiția sănătoasă, oferind momente pline de energie într-un mediu sigur, modern și profesional.",
     team: [
-      { name: "Romeo Chiriac", role: "Fondator & Manager", description: "Pasionat de tehnologie și gaming" },
-      { name: "Raluca Chiriac", role: "Co-Fondator & Organizator", description: "Expertă în organizarea evenimentelor" },
-      { name: "Ioan Ivașcu", role: "Instructor & Administrator", description: "Ghidul tău în arena futuristă" },
-      { name: "Maria Ivașcu", role: "Instructor & Hostess", description: "Ghidul tău în arena futuristă" }
+      { name: "Romeo Chiriac", role: "Fondator & Manager", description: "Arhitectul aventurii și tehnologiei noastre." },
+      { name: "Raluca Chiriac", role: "Co-Fondator & Organizator", description: "Expertul din spatele fiecărei petreceri reușite." },
+      { name: "Ioan Ivașcu", role: "Instructor & Administrator", description: "Ghidul tău în misiuni de adrenalină." },
+      { name: "Maria Ivașcu", role: "Instructor & Hostess", description: "Zâmbetul care dă startul distracției." }
     ],
     facilities: [
-      "Arenă exterioară de 2500mp cu obstacole strategice",
-      "Echipament profesional cu senzori de ultimă generație",
-      "Sistem de scor în timp real",
-      "Zone de odihnă climatizate",
-      "Sistem audio surround pentru atmosferă intensă",
-      "Iluminare și efecte speciale",
-      "Vestiare moderne și zonă interioară de luat masa"
+      "Arenă tactică de 2500mp cu obstacole strategice",
+      "Echipament Premium: Lasertag digital & Paintball tactic",
+      "Sisteme de scor live și monitorizare a misiunii",
+      "Zonă de relaxare climatizată pentru pauze între lupte",
+      "Fundal sonor rustic și atmosferă naturală de munte",
+      "Decor autentic integrat în peisajul montan",
+      "Vestiare moderne și spațiu generos pentru luat masa"
     ]
   },
   
@@ -61,7 +61,7 @@ export const mockData = {
     {
       title: "Restricții și Siguranță",
       rules: [
-        "Vârsta minimă: 8 ani (cu supraveghere adult pentru 8-12 ani)",
+        "Vârsta minimă: 8 ani (cu supraveghere adult pentru 8-14 ani)",
         "Nu este permis accesul cu alimente, băuturi sau obiecte personale în arenă",
         "Nu sunt permise telefoane mobile în timpul jocului",
         "Persoanele cu probleme medicale (cardiace, epilepsie) trebuie să anunțe personalul",
@@ -104,7 +104,7 @@ export const mockData = {
     {
       title: "Restricții și Siguranță",
       rules: [
-        "Vârsta minimă: 12 ani (cu supraveghere adult pentru 12-16 ani)",
+        "Vârsta minimă: 18 ani - pentru siguranța tuturor, nu se face excepție",
         "Nu este permis accesul cu alimente, băuturi sau obiecte personale în arenă",
         "Nu sunt permise telefoane mobile în timpul jocului",
         "Persoanele cu probleme medicale (cardiace, epilepsie) trebuie să anunțe personalul",
@@ -215,7 +215,7 @@ export const mockData = {
       duration: "90 minute joc intens",
       features: [
         "Acces pentru 6-12 persoane",
-        "Vârstă minimă: 18 ani!",
+        "Vârstă minimă: 18 ani",
         "Echipament complet inclus (mască, armă, salopetă)",
         "300 bile paintball incluse",
         "Organizare pe echipe sau individual",
@@ -307,32 +307,32 @@ export const mockData = {
     {
       id: 1,
       url: "https://placehold.co/280x187",
-      title: "Jucători în acțiune",
-      description: "Echipament profesional de laser tag"
+      title: "Adrenalină în teren",
+      description: "Lupte intense de lasertag și paintball"
     },
     {
       id: 2,
       url: "https://placehold.co/280x187",
-      title: "Arena noastră",
-      description: "Spațiu modern și bine echipat"
+      title: "Arena Moisei",
+      description: "Configurație tactică în decor rustic"
     },
     {
       id: 3,
       url: "https://placehold.co/280x187",
-      title: "Acțiune de echipă",
-      description: "Distracție garantată pentru toate vârstele"
+      title: "Misiuni de echipă",
+      description: "Strategie și aventură sub cerul liber"
     },
     {
       id: 4,
       url: "https://placehold.co/280x187",
-      title: "Echipament high-tech",
-      description: "Tehnologie de ultimă generație"
+      title: "Arsenal Premium",
+      description: "Echipamente digitale și markere profesionale"
     },
     {
       id: 5,
       url: "https://placehold.co/280x187",
-      title: "Atmosferă neon",
-      description: "Experiență futuristică unică"
+      title: "Amurg tactic",
+      description: "Atmosferă magică pentru jocuri de seară"
     }
   ],
   
@@ -342,21 +342,21 @@ export const mockData = {
       name: "Gabriel S.R.",
       rating: 5,
       text: "Experiență extraordinară! Arena este modernă, personalul prietenos și jocul extrem de captivant. Am venit cu prietenii și ne-am distrat de minune. Cu siguranță vom reveni!",
-      date: "10 aprilie 2026"
+      date: "14 martie 2026"
     },
     {
       id: 2,
       name: "Ana-Maria Gheorghe",
       rating: 5,
       text: "Am organizat aici petrecerea de ziua fiului meu și a fost perfect! Copiii s-au distrat enorm, instructorii au fost foarte atenți și profesioniști. Recomand cu încredere!",
-      date: "01 ianuarie 2026"
+      date: "14 martie 2026"
     },
     {
       id: 3,
       name: "Cristian Moldovan",
       rating: 5,
       text: "Cel mai tare team building pe care l-am avut vreodată! Echipamentul este top, arena e bine gândită cu multe ascunzișuri. Atmosphere cu lumini neon e super cool. 10/10!",
-      date: "01 ianuarie 2026"
+      date: "14 martie 2026"
     }
   ],
   

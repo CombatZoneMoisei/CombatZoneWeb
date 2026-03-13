@@ -153,7 +153,7 @@ const Reservations = () => {
         <div className="container">
           <Calendar className="page-icon" style={{ color: '#FFFFFF' }} />
           <h1 className="page-title">REZERVĂRI</h1>
-          <p className="page-subtitle">Rezervă-ți locul pentru cea mai tare experiență laser tag</p>
+          <p className="page-subtitle">Alege-ți tabăra și rezervă acum!</p>
           
           
           <p className="payment-warning">
@@ -436,10 +436,10 @@ const Reservations = () => {
                 </CardHeader>
                 <CardContent>
                   <ul className="tips-list">
-                    <li className="tip-item">Rezervările se confirmă în ordinea primirii</li>
-                    <li className="tip-item">Recomandam rezervare cu minim 48h înainte</li>
-                    <li className="tip-item">Pentru grupuri mari, contactați-ne telefonic</li>
-                    <li className="tip-item">Ajungeți cu 15 minute înainte pentru echipare</li>
+                    <li className="tip-item">Confirmăm rezervările în ordinea înscrierii.</li>
+                    <li className="tip-item">Rezervă cu 48h înainte pentru siguranță.</li>
+                    <li className="tip-item">Grupuri mari? Sună-ne pentru oferte!</li>
+                    <li className="tip-item">Vino cu 30 de minute înainte de start.</li>
                   </ul>
                 </CardContent>
               </Card>
