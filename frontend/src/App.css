@@ -1302,6 +1302,10 @@
     gap: 40px;
   }
 
+  .content-grid.reverse .content-icon-wrapper {
+    order: -1;
+  }
+
   .content-icon {
     width: 80px;
     height: 80px;
@@ -1600,6 +1604,7 @@
   .safety-content {
     flex-direction: column;
     text-align: center;
+    align-items: center;
   }
 
   .payment-warning {

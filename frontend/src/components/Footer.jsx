@@ -17,13 +17,13 @@ const Footer = () => {
         <div className="footer-grid">
           {/* Brand Section */}
           <div className="footer-section">
-            <div className="footer-logo">
+            <Link to="/" className="footer-logo">
               <img 
                 src="/combatzone.png" 
                 alt="Combat Zone Moisei Logo" 
                 className="footer-logo-image"
               />
-            </div>
+            </Link>
             <p className="footer-description">
               Experimentează adrenalina jocului futuristic de laser tag în cea mai modernă arenă exterioară din Maramureș.
             </p>
