@@ -19,10 +19,10 @@ const Home = () => {
       {/* Hero Section */}
       <section className="hero-section">
         <div className="hero-background">
-          <img
-            src="/hero-background.jpg"
-            alt="Combat Zone Moisei Arena"
-            className="hero-image" />
+          <picture>
+  <source media="(max-width: 767px)" srcSet="/hero-background-mobile.jpg" />
+  <img src="/hero-background-desktop.jpg" alt="Combat Zone Moisei Arena" className="hero-image" />
+</picture>
 
           <div className="hero-overlay"></div>
         </div>
