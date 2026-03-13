@@ -393,29 +393,29 @@ const Reservations = () => {
                   <CardTitle className="contact-card-title">Informații de contact</CardTitle>
                 </CardHeader>
                 <CardContent className="contact-info-content">
-                  <div className="contact-item">
+                  <a href={`tel:${mockData.contact.phone}`} className="contact-item" style={{ textDecoration: 'none', color: 'inherit', cursor: 'pointer' }}>
                     <Phone className="contact-icon" />
                     <div>
                       <p className="contact-label">Telefon</p>
                       <p className="contact-value">{mockData.contact.phone}</p>
                     </div>
-                  </div>
+                  </a>
 
-                  <div className="contact-item">
+                  <a href={`mailto:${mockData.contact.email}`} className="contact-item" style={{ textDecoration: 'none', color: 'inherit', cursor: 'pointer' }}>
                     <Mail className="contact-icon" />
                     <div>
                       <p className="contact-label">Email</p>
                       <p className="contact-value">{mockData.contact.email}</p>
                     </div>
-                  </div>
+                  </a>
 
-                  <div className="contact-item">
+                  <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(mockData.contact.address)}`} target="_blank" rel="noopener noreferrer" className="contact-item" style={{ textDecoration: 'none', color: 'inherit', cursor: 'pointer' }}>
                     <MapPin className="contact-icon" />
                     <div>
                       <p className="contact-label">Adresă</p>
                       <p className="contact-value">{mockData.contact.address}</p>
                     </div>
-                  </div>
+                  </a>
 
                   <div className="contact-item">
                     <Clock className="contact-icon" style={{ color: '#FFFFFF' }} />
