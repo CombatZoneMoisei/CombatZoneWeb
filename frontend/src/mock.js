@@ -3,7 +3,7 @@
 export const mockData = {
   hero: {
     title: "Combat Zone Moisei",
-    subtitle: "Alege-ți aventura: Adrenalina Lasertag-ului sau strategia Paintball-ului, totul într-un singur loc!",
+    subtitle: "Alege-ți aventura: adrenalina Lasertag-ului sau strategia Paintball-ului, totul într-un singur loc!",
     description: "Alătură-te unei aventuri captivante în arena noastră exterioară. Jocuri intense, echipament de ultimă generație și distracție garantată pentru toate vârstele."
   },
   
@@ -12,9 +12,7 @@ export const mockData = {
     mission: "Misiunea noastră este să oferim fiecărui aventurier o experiență de neuitat, fie că alege precizia tehnologiei Lasertag sau strategia intensă a Paintball-ului. Construim un spațiu unde distracția întâlnește competiția sănătoasă, oferind momente pline de energie într-un mediu sigur, modern și profesional.",
     team: [
       { name: "Romeo Chiriac", role: "Fondator & Manager", description: "Arhitectul aventurii și tehnologiei noastre." },
-      { name: "Raluca Chiriac", role: "Co-Fondator & Organizator", description: "Expertul din spatele fiecărei petreceri reușite." },
-      { name: "Ioan Ivașcu", role: "Instructor & Administrator", description: "Ghidul tău în misiuni de adrenalină." },
-      { name: "Maria Ivașcu", role: "Instructor & Hostess", description: "Zâmbetul care dă startul distracției." }
+      { name: "Raluca Chiriac", role: "Co-Fondator & Organizator", description: "Expertul din spatele fiecărei petreceri reușite." }
     ],
     facilities: [
       "Arenă tactică de 2500mp cu obstacole strategice",
@@ -61,7 +59,7 @@ export const mockData = {
     {
       title: "Restricții și Siguranță",
       rules: [
-        "Vârsta minimă: 8 ani (cu supraveghere adult pentru 8-14 ani)",
+        "Vârsta minimă: 8 ani (cu supraveghere adult pentru 8-12 ani)",
         "Nu este permis accesul cu alimente, băuturi sau obiecte personale în arenă",
         "Nu sunt permise telefoane mobile în timpul jocului",
         "Persoanele cu probleme medicale (cardiace, epilepsie) trebuie să anunțe personalul",
@@ -104,7 +102,7 @@ export const mockData = {
     {
       title: "Restricții și Siguranță",
       rules: [
-        "Vârsta minimă: 18 ani - pentru siguranța tuturor, nu se face excepție",
+        "Vârsta minimă: 15 ani - pentru siguranța tuturor, nu se face excepție",
         "Nu este permis accesul cu alimente, băuturi sau obiecte personale în arenă",
         "Nu sunt permise telefoane mobile în timpul jocului",
         "Persoanele cu probleme medicale (cardiace, epilepsie) trebuie să anunțe personalul",
@@ -215,7 +213,7 @@ export const mockData = {
       duration: "90 minute joc intens",
       features: [
         "Acces pentru 6-12 persoane",
-        "Vârstă minimă: 18 ani",
+        "Vârstă minimă: 15 ani",
         "Echipament complet inclus (mască, armă, salopetă)",
         "300 bile paintball incluse",
         "Organizare pe echipe sau individual",
