@@ -71,7 +71,7 @@ const Footer = () => {
 
   {/* Maps Link */}
   <a 
-    href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(mockData.contact.address)}`}
+    href="https://maps.app.goo.gl/9W3p1zmFDNYhwXyK7?g_st=aw"
     target="_blank" 
     rel="noopener noreferrer"
     className="contact-item-footer"

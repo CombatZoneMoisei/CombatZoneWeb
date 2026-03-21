@@ -409,7 +409,7 @@ const Reservations = () => {
                     </div>
                   </a>
 
-                  <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(mockData.contact.address)}`} target="_blank" rel="noopener noreferrer" className="contact-item" style={{ textDecoration: 'none', color: 'inherit', cursor: 'pointer' }}>
+                  <a href="https://maps.app.goo.gl/9W3p1zmFDNYhwXyK7?g_st=aw" target="_blank" rel="noopener noreferrer" className="contact-item" style={{ textDecoration: 'none', color: 'inherit', cursor: 'pointer' }}>
                     <MapPin className="contact-icon" />
                     <div>
                       <p className="contact-label">Adresă</p>

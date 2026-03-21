@@ -93,17 +93,33 @@ const Pricing = () => {
                         }}>{pkg.duration}</span>
                       </div>
                     )}
+                    {pkg.name === 'Evenimente Private' && (
+  <div style={{
+    background: 'linear-gradient(135deg, #dc2626, #b91c1c)',
+    color: '#ffffff',
+    padding: '12px 16px',
+    borderRadius: '8px',
+    textAlign: 'center',
+    fontWeight: '700',
+    fontSize: 'clamp(0.8rem, 2.5vw, 0.95rem)',
+    lineHeight: '1.4',
+    marginTop: '12px',
+    boxShadow: '0 2px 8px rgba(220, 38, 38, 0.4)',
+  }}>
+    🎯 Ofertă personalizată pentru școli, companii sau grupuri mari!
+  </div>
+)}
                   </div>
                 </CardHeader>
                 <CardContent className="pricing-content pricing-content-flex">
                   <ul className="pricing-features-full">
-                    {pkg.features.map((feature, idx) => (
-                      <li key={idx} className="pricing-feature-full">
-                        <Check className="check-icon" />
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
+  {pkg.features.map((feature, idx) => (
+    <li key={idx} className="pricing-feature-full">
+      <Check className="check-icon" />
+      <span>{feature}</span>
+    </li>
+  ))}
+</ul>
                   {pkg.name !== 'Refill' && pkg.name !== 'Evenimente Private' && (
                     <Link to={`/rezervari?pachet=${encodeURIComponent(pkg.name)}&tip=${gameType}`}>
                       <Button className={pkg.popular ? 'btn-primary full-width' : 'btn-secondary full-width'}>

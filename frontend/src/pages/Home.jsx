@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Star, Users, Clock, Shield, Crosshair, Target } from 'lucide-react';
+import { Star, Users, Clock, Shield, Crosshair, Target, Check, X } from 'lucide-react';
 import { mockData } from '../mock';
 import { Button } from '../components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
@@ -13,6 +13,7 @@ const Home = () => {
   }, []);
 
   const currentPricing = gameType === 'lasertag' ? mockData.pricingLasertag : mockData.pricingPaintball;
+  const [lightboxImage, setLightboxImage] = useState(null);
 
   return (
     <div className="home-page">
@@ -138,13 +139,32 @@ const Home = () => {
                       }}>{pkg.duration}</span>
                     </div>
                   )}
+                  {pkg.name === 'Evenimente Private' && (
+  <div style={{
+    background: 'linear-gradient(135deg, #dc2626, #b91c1c)',
+    color: '#ffffff',
+    padding: '12px 16px',
+    borderRadius: '8px',
+    textAlign: 'center',
+    fontWeight: '700',
+    fontSize: 'clamp(0.8rem, 2.5vw, 0.95rem)',
+    lineHeight: '1.4',
+    marginTop: '12px',
+    boxShadow: '0 2px 8px rgba(220, 38, 38, 0.4)',
+  }}>
+    🎯 Ofertă personalizată pentru școli, companii sau grupuri mari!
+  </div>
+)}
                 </CardHeader>
                 <CardContent style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                   <ul className="pricing-features">
-                    {pkg.features.map((feature, idx) =>
-                  <li key={idx} className="pricing-feature-item">{feature}</li>
-                  )}
-                  </ul>
+  {pkg.features.map((feature, idx) =>
+    <li key={idx} className="pricing-feature-item" style={{ display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
+      <Check style={{ width: '18px', height: '18px', color: '#ceff00', flexShrink: 0, marginTop: '2px' }} />
+      <span>{feature}</span>
+    </li>
+  )}
+</ul>
                   {pkg.name !== 'Refill' && pkg.name !== 'Evenimente Private' && (
                     <Link to={`/rezervari?pachet=${encodeURIComponent(pkg.name)}&tip=${gameType}`}>
                       <Button className="btn-primary full-width">REZERVĂ</Button>
@@ -158,28 +178,91 @@ const Home = () => {
       </section>
 
       {/* Gallery Preview Section */}
-      <section className="gallery-preview-section">
-        <div className="container">
-          <h2 className="section-title">COLECȚIE FOTO</h2>
-          <p className="section-subtitle">Capturile noastre cu cele mai bune momente</p>
-          <div className="gallery-grid">
-            {mockData.gallery.slice(0, 4).map((image) =>
-            <div key={image.id} className="gallery-item">
-                <img src={image.url} alt={image.title} className="gallery-image" />
-                <div className="gallery-overlay">
-                  <h4 className="gallery-title">{image.title}</h4>
-                  <p className="gallery-description">{image.description}</p>
-                </div>
-              </div>
-            )}
-          </div>
-          <div className="text-center">
-            <Link to="/colectie-foto">
-              <Button className="btn-secondary">VEZI TOATE FOTOGRAFIILE</Button>
-            </Link>
+<section className="gallery-preview-section">
+  <div className="container">
+    <h2 className="section-title">COLECȚIE FOTO</h2>
+    <p className="section-subtitle">Capturile noastre cu cele mai bune momente</p>
+    <div className="gallery-grid">
+      {mockData.gallery.map((image) => (
+        <div key={image.id} className="gallery-item" onClick={() => setLightboxImage(image)}>
+          <img src={image.url} alt={image.title} className="gallery-image" />
+          <div className="gallery-overlay">
+            <h4 className="gallery-title">{image.title}</h4>
+            <p className="gallery-description">{image.description}</p>
           </div>
         </div>
-      </section>
+      ))}
+    </div>
+    <div className="text-center">
+      <Link to="/colectie-foto">
+        <Button className="btn-secondary">VEZI TOATE FOTOGRAFIILE</Button>
+      </Link>
+    </div>
+  </div>
+</section>
+
+{/* Lightbox */}
+{lightboxImage && (
+  <div
+    style={{
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      backgroundColor: 'rgba(0, 0, 0, 0.9)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      zIndex: 9999,
+      padding: '20px',
+      cursor: 'pointer',
+    }}
+    onClick={() => setLightboxImage(null)}
+  >
+    <button
+      onClick={() => setLightboxImage(null)}
+      style={{
+        position: 'absolute',
+        top: '20px',
+        right: '20px',
+        background: 'rgba(255,255,255,0.15)',
+        border: 'none',
+        borderRadius: '50%',
+        width: '44px',
+        height: '44px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        cursor: 'pointer',
+        zIndex: 10000,
+      }}
+    >
+      <X style={{ color: '#fff', width: '24px', height: '24px' }} />
+    </button>
+    <img
+      src={lightboxImage.url}
+      alt={lightboxImage.title}
+      style={{
+        maxWidth: '90vw',
+        maxHeight: '85vh',
+        objectFit: 'contain',
+        borderRadius: '8px',
+      }}
+      onClick={(e) => e.stopPropagation()}
+    />
+    <div style={{
+      position: 'absolute',
+      bottom: '30px',
+      textAlign: 'center',
+      color: '#fff',
+    }}>
+      <h4 style={{ fontSize: '1.25rem', fontWeight: '700', marginBottom: '4px' }}>{lightboxImage.title}</h4>
+      <p style={{ fontSize: '0.95rem', opacity: 0.8 }}>{lightboxImage.description}</p>
+    </div>
+  </div>
+)}
+
 
       {/* Testimonials Section */}
       <section className="testimonials-section">

@@ -159,7 +159,7 @@ export const mockData = {
     {
       id: 1,
       name: "Pachet Simplu",
-      price: "125 RON/persoană",
+      price: "100 RON/persoană",
       duration: "90 minute joc intens",
       features: [
         "Acces la arenă pentru 6-12 persoane",
@@ -174,7 +174,7 @@ export const mockData = {
     {
       id: 2,
       name: "Pachet Full",
-      price: "175 RON/persoană",
+      price: "150 RON/persoană",
       duration: "90 minute joc intens",
       features: [
         "Acces pentru 6-12 persoane",
@@ -303,32 +303,32 @@ export const mockData = {
   
   gallery: [
     {
-      id: 1,
-      url: "https://placehold.co/280x187",
-      title: "Adrenalină în teren",
-      description: "Lupte intense de lasertag și paintball"
+    id: 1,
+    url: "/Images/Image1.JPG",
+    title: "Adrenalină în teren",
+    description: "Lupte intense de lasertag și paintball"
     },
     {
       id: 2,
-      url: "https://placehold.co/280x187",
+      url: "/Images/Image2.JPG",
       title: "Arena Moisei",
       description: "Configurație tactică în decor rustic"
     },
     {
       id: 3,
-      url: "https://placehold.co/280x187",
+      url: "/Images/Image3.JPG",
       title: "Misiuni de echipă",
       description: "Strategie și aventură sub cerul liber"
     },
     {
       id: 4,
-      url: "https://placehold.co/280x187",
+      url: "/Images/Image4.JPG",
       title: "Arsenal Premium",
       description: "Echipamente digitale și markere profesionale"
     },
     {
       id: 5,
-      url: "https://placehold.co/280x187",
+      url: "/Images/Image5.JPG",
       title: "Amurg tactic",
       description: "Atmosferă magică pentru jocuri de seară"
     }
